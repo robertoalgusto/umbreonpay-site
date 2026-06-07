@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Taxas — UmbreonPay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .calc-container { background: var(--cinza-escuro); padding: 40px; border: 1px solid #222; max-width: 600px; margin: 0 auto; }
+        .calc-container input { width: 100%; padding: 15px; background: #111; border: 1px solid #333; color: white; font-size: 18px; text-align: center; margin-bottom: 30px; }
+        .resultado { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
+        .resultado-item { background: #111; padding: 20px; text-align: center; border: 1px solid #222; }
+        .resultado-item h4 { color: var(--dourado); font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; }
+        .resultado-item .valor { font-size: 24px; font-weight: bold; }
+        .resultado-item .taxa { font-size: 12px; color: var(--cinza); margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">UMBREONPAY</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="taxas.html">Taxas</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-outline">Entrar</a>
+                <a href="abrir-conta.html" class="btn-gold">Abrir Conta</a>
+            </div>
+        </nav>
+    </header>
+
+    <section style="padding-top: 150px;" class="section-black">
+        <div class="container">
+            <h2>Calculadora de Taxas</h2>
+            <div class="divider-small"></div>
+            <div class="calc-container">
+                <label style="color: var(--cinza); font-size: 14px;">Digite o valor da transação (R$)</label>
+                <input type="number" id="valor" placeholder="1000" oninput="calcular()" value="1000">
+                <div class="resultado" id="resultados"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>UMBREONPAY — POTESTAS IN UMBRA</p>
+        <p class="footer-small">© 2026 UmbreonPay. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+    function calcular() {
+        const v = parseFloat(document.getElementById('valor').value) || 0;
+        document.getElementById('resultados').innerHTML = `
+            <div class="resultado-item">
+                <h4>Depósito Próprio</h4>
+                <div class="valor" style="color: #00C853;">R$ ${v.toFixed(2)}</div>
+                <div class="taxa">Taxa: 0%</div>
+            </div>
+            <div class="resultado-item">
+                <h4>Depósito de Terceiro</h4>
+                <div class="valor" style="color: #FF1744;">R$ ${(v * 0.75).toFixed(2)}</div>
+                <div class="taxa">Taxa: 25% (R$ ${(v * 0.25).toFixed(2)})</div>
+            </div>
+            <div class="resultado-item">
+                <h4>Saque</h4>
+                <div class="valor" style="color: #FF9100;">R$ ${(v * 0.985).toFixed(2)}</div>
+                <div class="taxa">Taxa: 1.5% (R$ ${(v * 0.015).toFixed(2)})</div>
+            </div>
+            <div class="resultado-item">
+                <h4>Swap de Criptomoedas</h4>
+                <div class="valor" style="color: #C9A84C;">R$ ${(v * 0.995).toFixed(2)}</div>
+                <div class="taxa">Taxa: 0.5% (R$ ${(v * 0.005).toFixed(2)})</div>
+            </div>
+        `;
+    }
+    calcular();
+    </script>
+</body>
+</html>

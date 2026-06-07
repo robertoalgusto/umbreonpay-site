@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — UmbreonPay</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .faq-item {
+            background: var(--cinza-escuro);
+            border: 1px solid #222;
+            margin-bottom: 15px;
+            padding: 0;
+        }
+        .faq-question {
+            padding: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--dourado);
+        }
+        .faq-question:hover { background: rgba(201,168,76,0.05); }
+        .faq-answer {
+            padding: 0 20px 20px;
+            color: var(--cinza);
+            display: none;
+            line-height: 1.8;
+        }
+        .faq-item.active .faq-answer { display: block; }
+        .faq-toggle { font-size: 20px; transition: transform 0.3s; }
+        .faq-item.active .faq-toggle { transform: rotate(45deg); }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">UMBREONPAY</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Sobre</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="taxas.html">Taxas</a></li>
+                <li><a href="seguranca.html">Segurança</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+                <li><a href="contato.html">Contato</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <a href="login.html" class="btn-outline">Entrar</a>
+                <a href="abrir-conta.html" class="btn-gold">Abrir Conta</a>
+            </div>
+        </nav>
+    </header>
+
+    <section style="padding-top: 150px;" class="section-dark">
+        <div class="container">
+            <h2>Perguntas Frequentes</h2>
+            <div class="divider-small"></div>
+            
+            <div class="faq-item active">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Quanto tempo leva para abrir uma conta?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">Menos de 3 minutos. Basta preencher o formulário com nome, CPF, email e senha. Sua conta estará ativa imediatamente.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Meu dinheiro está realmente seguro?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">Sim. Nossa infraestrutura opera em 3 data centers em continentes diferentes. Utilizamos criptografia AES-256, servidores dedicados e monitoramento 24 horas. Se um data center cair, os outros assumem instantaneamente.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Por que a taxa de depósito de terceiro é 25%?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">Esta taxa existe para desestimular fraudes e lavagem de dinheiro entre contas de titularidade diferente. Depósitos do próprio titular são sempre gratuitos.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Posso depositar de qualquer banco?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">Sim. Aceitamos depósitos via Pix, TED, DOC e criptomoedas (Monero, Bitcoin, Ethereum, USDT e USDC).</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    O que acontece se eu esquecer minha senha?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">Você pode redefinir sua senha pelo email cadastrado. Enviaremos um link seguro de recuperação. Se você perder o acesso ao email, entre em contato com nosso suporte 24h.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Como funciona o rendimento automático?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">Seu saldo é aplicado automaticamente em pools de liquidez de exchanges descentralizadas. O rendimento varia de 2% a 5% ao mês, dependendo do seu nível de conta. Você pode resgatar a qualquer momento.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    A UmbreonPay tem aplicativo?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">Sim. Nosso aplicativo está disponível para Android (via APK direto) e em breve para iOS. Acesse a página de download para instalar.</div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    O cartão UmbreonPay é físico ou virtual?
+                    <span class="faq-toggle">+</span>
+                </div>
+                <div class="faq-answer">O cartão é 100% virtual. Você pode adicioná-lo ao Google Pay ou Apple Pay e pagar por aproximação com seu celular. Cada transação gera um número de cartão único (tokenização).</div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>UMBREONPAY — POTESTAS IN UMBRA</p>
+        <p class="footer-small">© 2026 UmbreonPay. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+    function toggleFAQ(element) {
+        const item = element.parentElement;
+        item.classList.toggle('active');
+    }
+    </script>
+</body>
+</html>
