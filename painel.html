@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Painel — UmbreonPay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0A0A0A;font-family:'Inter',sans-serif;color:#FFF;display:flex;min-height:100vh}
+        .sidebar{width:260px;background:#0D0D0D;border-right:1px solid #1A1A1A;padding:30px 20px;display:flex;flex-direction:column}
+        .sidebar-logo{font-family:'Cinzel',serif;color:#C9A84C;font-size:18px;letter-spacing:3px;margin-bottom:40px;text-align:center}
+        .sidebar a{display:block;color:#888;padding:12px 15px;text-decoration:none;font-size:13px;border-radius:8px;margin-bottom:5px;transition:all .3s}
+        .sidebar a:hover,.sidebar a.active{background:rgba(201,168,76,.1);color:#C9A84C}
+        .main{flex:1;padding:40px}
+        .topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:40px}
+        .topbar h2{font-family:'Cinzel',serif;color:#C9A84C;font-size:20px;letter-spacing:2px}
+        .saldo-card{background:linear-gradient(135deg,#1A1A1A,#0A0A0A);border:1px solid #C9A84C;border-radius:16px;padding:30px;margin-bottom:30px}
+        .saldo-card .label{color:#888;font-size:11px;text-transform:uppercase;letter-spacing:2px}
+        .saldo-card .valor{font-size:42px;font-weight:700;margin:10px 0;color:#FFF}
+        .saldo-card .rendimento{color:#00C853;font-size:14px}
+        .quick-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:30px}
+        .quick-btn{background:#111;border:1px solid #1A1A1A;border-radius:12px;padding:25px;text-align:center;color:#FFF;text-decoration:none;transition:all .3s}
+        .quick-btn:hover{border-color:#C9A84C;transform:translateY(-3px)}
+        .quick-btn .icon{font-size:28px;margin-bottom:10px}
+        .quick-btn .label{font-size:12px;color:#888}
+        @media(max-width:768px){.sidebar{display:none}.quick-actions{grid-template-columns:repeat(2,1fr)}}
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-logo">UMBREONPAY</div>
+        <a href="painel.html" class="active">📊 Dashboard</a>
+        <a href="extrato.html">📋 Extrato</a>
+        <a href="swap.html">💱 Cripto</a>
+        <a href="cartao.html">💳 Cartão NFC</a>
+        <a href="vault.html">🔐 Vault</a>
+        <a href="metas.html">🎯 Metas</a>
+        <a href="afiliados.html">👥 Afiliados</a>
+        <a href="seguranca-avancada.html">⚙️ Segurança</a>
+        <a href="index.html" style="margin-top:auto;color:#FF1744">🚪 Sair</a>
+    </div>
+    <div class="main">
+        <div class="topbar"><h2>Dashboard</h2></div>
+        <div class="saldo-card">
+            <div class="label">Saldo Disponível</div>
+            <div class="valor">R$ 0,00</div>
+            <div class="rendimento">📈 +R$ 0,00 este mês</div>
+        </div>
+        <div class="quick-actions">
+            <a href="#" class="quick-btn"><div class="icon">📤</div><div class="label">Pix</div></a>
+            <a href="#" class="quick-btn"><div class="icon">📥</div><div class="label">Depositar</div></a>
+            <a href="swap.html" class="quick-btn"><div class="icon">💱</div><div class="label">Swap</div></a>
+            <a href="cartao.html" class="quick-btn"><div class="icon">💳</div><div class="label">Cartão NFC</div></a>
+        </div>
+    </div>
+</body>
+</html>

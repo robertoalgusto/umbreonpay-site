@@ -1,1 +1,96 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Cartão Black — UmbreonPay</title><link rel="stylesheet" href="style.css"><style>.cartao-virtual{background:linear-gradient(135deg,#1a1a1a,#0a0a0a);border:2px solid var(--dourado);border-radius:15px;padding:30px;max-width:400px;margin:40px auto;text-align:left}.cartao-numero{font-size:22px;letter-spacing:4px;color:white;margin:20px 0}.cartao-nome{font-size:14px;color:var(--cinza);text-transform:uppercase}.cartao-cvv{font-size:14px;color:var(--dourado)}.cvv-dinamico{animation:pisca 1s infinite}@keyframes pisca{0%,100%{opacity:1}50%{opacity:0.3}}</style></head><body><header><nav><div class="logo">UMBREONPAY</div><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="cartao.html">Cartão</a></li></ul><div class="nav-buttons"><a href="login.html" class="btn-outline">Entrar</a><a href="abrir-conta.html" class="btn-gold">Abrir Conta</a></div></nav></header><section style="padding-top:150px" class="section-dark"><div class="container"><h2>Cartão Black Virtual</h2><div class="divider-small"></div><div class="cartao-virtual"><p style="color:var(--dourado);font-size:12px;letter-spacing:3px">UMBREONPAY BLACK</p><div class="cartao-numero">**** **** **** 1234</div><div class="cartao-nome">NOME DO TITULAR</div><div style="display:flex;justify-content:space-between;margin-top:20px"><span style="color:var(--cinza);font-size:12px">VALID: 12/28</span><span class="cartao-cvv cvv-dinamico">CVV: ***</span></div></div><p style="text-align:center;color:var(--cinza);margin-top:20px">CVV dinâmico — troca a cada 30 segundos<br>Pagamento por aproximação via Google Pay e Apple Pay</p></div></section><footer><p>UMBREONPAY — POTESTAS IN UMBRA</p><p class="footer-small">© 2026 UmbreonPay</p></footer></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Cartão Black — UmbreonPay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0A0A0A;font-family:'Inter',sans-serif;color:#FFF;padding:30px;max-width:600px;margin:0 auto;text-align:center}
+        h2{font-family:'Cinzel',serif;color:#C9A84C;font-size:22px;letter-spacing:3px;margin-bottom:30px}
+        
+        .cartao-fisico{background:linear-gradient(135deg,#1A1A1A,#0A0A0A);border:2px solid #C9A84C;border-radius:20px;padding:30px;max-width:400px;margin:30px auto;text-align:left;box-shadow:0 20px 50px rgba(0,0,0,.5);position:relative;overflow:hidden}
+        .cartao-fisico::before{content:'';position:absolute;top:-30px;right:-30px;width:100px;height:100px;background:rgba(201,168,76,.1);border-radius:50%}
+        .cartao-chip{width:40px;height:30px;background:linear-gradient(135deg,#C9A84C,#8B7500);border-radius:6px;margin-bottom:20px}
+        .cartao-numero{font-size:20px;letter-spacing:4px;color:#FFF;font-family:monospace;margin:15px 0}
+        .cartao-nome{font-size:12px;color:#888;text-transform:uppercase;letter-spacing:2px}
+        .cartao-cvv{font-size:14px;color:#C9A84C;font-family:monospace}
+        
+        .acoes{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:30px}
+        .btn-acao{background:#111;border:1px solid #1A1A1A;border-radius:12px;padding:20px;color:#FFF;cursor:pointer;text-align:center;transition:all .3s;font-size:12px}
+        .btn-acao:hover{border-color:#C9A84C}
+        .btn-acao .icon{font-size:28px;margin-bottom:8px;display:block}
+        
+        .nfc-section{background:#111;border:1px solid #C9A84C;border-radius:16px;padding:30px;margin-top:30px}
+        .nfc-section h3{color:#C9A84C;font-size:16px;margin-bottom:15px}
+        .nfc-section p{color:#888;font-size:13px;line-height:1.8;margin-bottom:15px}
+        
+        .status-dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:8px}
+        .dot-on{background:#00C853}
+        .dot-off{background:#888}
+        
+        .voltar{margin-top:40px}
+        .voltar a{color:#888;text-decoration:none;font-size:13px}
+    </style>
+</head>
+<body>
+    <h2>💳 CARTÃO BLACK</h2>
+    
+    <!-- Cartão Virtual -->
+    <div class="cartao-fisico">
+        <div class="cartao-chip"></div>
+        <div style="color:#C9A84C;font-size:10px;letter-spacing:3px">UMBREONPAY BLACK</div>
+        <div class="cartao-numero">**** **** **** 1234</div>
+        <div style="display:flex;justify-content:space-between;align-items:center">
+            <div>
+                <div class="cartao-nome">NOME DO TITULAR</div>
+                <div style="color:#888;font-size:10px;margin-top:5px">VALID 12/28</div>
+            </div>
+            <div style="text-align:right">
+                <div style="color:#888;font-size:10px">CVV</div>
+                <div class="cartao-cvv" id="cvv">***</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Ações -->
+    <div class="acoes">
+        <button class="btn-acao" onclick="gerarCVV()"><span class="icon">🔄</span>CVV Dinâmico</button>
+        <button class="btn-acao" onclick="alert('Cartão copiado!')"><span class="icon">📋</span>Copiar Número</button>
+        <button class="btn-acao" onclick="alert('Cartão congelado!')"><span class="icon">🔒</span>Congelar</button>
+    </div>
+    
+    <!-- NFC Section -->
+    <div class="nfc-section">
+        <h3>📱 PAGAMENTO POR APROXIMAÇÃO</h3>
+        <p>Adicione seu cartão UmbreonPay ao Google Pay ou Apple Pay e pague por aproximação em qualquer maquininha.</p>
+        <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap">
+            <button class="btn-acao" style="flex:1;min-width:150px" onclick="alert('Adicionado ao Google Pay!')">
+                <span class="icon">📱</span>Google Pay
+            </button>
+            <button class="btn-acao" style="flex:1;min-width:150px" onclick="alert('Adicionado ao Apple Pay!')">
+                <span class="icon">🍎</span>Apple Pay
+            </button>
+        </div>
+        <div style="margin-top:20px;text-align:center">
+            <span class="status-dot dot-on"></span> NFC disponível neste dispositivo
+        </div>
+    </div>
+    
+    <div class="voltar"><a href="painel.html">← Voltar ao Painel</a></div>
+
+    <script>
+    function gerarCVV() {
+        const cvv = Math.floor(Math.random() * 900) + 100;
+        document.getElementById('cvv').textContent = cvv;
+        document.getElementById('cvv').style.color = '#C9A84C';
+        setTimeout(() => {
+            document.getElementById('cvv').textContent = '***';
+            document.getElementById('cvv').style.color = '#C9A84C';
+        }, 30000);
+    }
+    // Gerar CVV automaticamente a cada 30 segundos
+    setInterval(gerarCVV, 30000);
+    </script>
+</body>
+</html>
