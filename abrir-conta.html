@@ -82,7 +82,7 @@
         
         msg.innerHTML = '<span style="color: #C9A84C;">Processando...</span>';
         
-        fetch('http://localhost:8080/api/cadastrar', {
+        fetch('https://umbreonpay.fly.dev/api/cadastrar', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(dados)
