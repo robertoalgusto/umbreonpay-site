@@ -13,231 +13,342 @@
             --branco: #FFF;
             --cinza: #888;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: var(--preto); font-family: 'Inter', sans-serif; color: var(--branco); }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background: var(--preto); font-family: 'Inter', sans-serif; color: var(--branco); overflow-x: hidden; }
         
+        /* PARTÍCULAS DOURADAS */
+        .particulas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+        .particula {
+            position: absolute; color: var(--dourado); opacity: 0;
+            animation: flutuar 8s infinite; font-size: 20px;
+        }
+        @keyframes flutuar {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.4; }
+            90% { opacity: 0.4; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+        
+        /* HERO */
         .hero {
-            text-align: center;
-            padding: 80px 20px 60px;
-            position: relative;
-            overflow: hidden;
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            text-align: center; padding: 40px 20px; position: relative; z-index: 1;
+            background: radial-gradient(ellipse at center, rgba(201,168,76,0.05) 0%, transparent 70%);
         }
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: radial-gradient(circle at center, rgba(201,168,76,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
+        .hero-content { max-width: 700px; }
         .hero img {
-            width: 200px;
-            height: auto;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 0 30px rgba(201,168,76,0.4));
-            animation: pulsar 3s infinite;
-            position: relative;
-            z-index: 1;
+            width: 220px; height: auto; margin-bottom: 30px;
+            animation: pulsar 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 40px rgba(201,168,76,0.5));
         }
         @keyframes pulsar {
-            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(201,168,76,0.4)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 50px rgba(201,168,76,0.7)); }
+            0%,100% { transform: scale(1); filter: drop-shadow(0 0 40px rgba(201,168,76,0.5)); }
+            50% { transform: scale(1.08); filter: drop-shadow(0 0 70px rgba(201,168,76,0.9)); }
         }
-        .hero h1 {
-            font-family: 'Cinzel', serif;
-            font-size: 56px;
-            color: var(--dourado);
-            letter-spacing: 10px;
-            position: relative;
-            z-index: 1;
+        .hero h1 { font-family: 'Cinzel',serif; font-size: 64px; color: var(--dourado); letter-spacing: 14px; }
+        .hero .subtitulo { font-family: 'Cinzel',serif; color: var(--dourado); font-size: 14px; letter-spacing: 8px; margin: 10px 0; }
+        .hero .chines { font-size: 28px; color: var(--vermelho); letter-spacing: 10px; margin: 15px 0; }
+        .hero .desc { color: var(--cinza); font-size: 15px; line-height: 1.8; margin: 30px 0; }
+        .hero .botoes { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px; }
+        .btn-dourado {
+            display: inline-block; background: var(--dourado); color: var(--preto);
+            padding: 16px 40px; text-decoration: none; font-weight: 700; font-size: 13px;
+            letter-spacing: 3px; border-radius: 8px; transition: all 0.3s;
         }
-        .hero .subtitulo {
-            font-family: 'Cinzel', serif;
-            color: var(--dourado);
-            font-size: 16px;
-            letter-spacing: 6px;
-            margin-top: 10px;
-            position: relative;
-            z-index: 1;
+        .btn-dourado:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(201,168,76,0.4); }
+        .btn-borda {
+            display: inline-block; border: 1px solid var(--dourado); color: var(--dourado);
+            padding: 16px 40px; text-decoration: none; font-weight: 600; font-size: 13px;
+            letter-spacing: 3px; border-radius: 8px; transition: all 0.3s;
         }
-        .hero .chines {
-            font-family: serif;
-            font-size: 24px;
-            color: var(--vermelho);
-            letter-spacing: 8px;
-            margin-top: 15px;
-            position: relative;
-            z-index: 1;
-        }
-        .hero .descricao {
-            color: var(--cinza);
-            font-size: 16px;
-            max-width: 600px;
-            margin: 30px auto 0;
-            line-height: 1.8;
-            position: relative;
-            z-index: 1;
-        }
+        .btn-borda:hover { background: var(--dourado); color: var(--preto); }
         
-        .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+        /* SEÇÕES */
+        section { padding: 100px 20px; position: relative; z-index: 1; }
+        .container { max-width: 1000px; margin: 0 auto; }
+        h2 { font-family: 'Cinzel',serif; font-size: 32px; color: var(--dourado); text-align: center; letter-spacing: 5px; margin-bottom: 15px; }
+        .linha { width: 60px; height: 1px; background: var(--dourado); margin: 0 auto 50px; }
         
-        .secao { margin-bottom: 80px; }
-        .secao h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--dourado);
-            font-size: 28px;
-            letter-spacing: 4px;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .secao .linha {
-            width: 60px;
-            height: 1px;
-            background: var(--dourado);
-            margin: 0 auto 40px;
-        }
-        
-        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
+        /* CARDS INTERATIVOS */
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px; }
         .card {
-            background: #111;
-            border: 1px solid #1A1A1A;
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-            transition: border-color 0.3s;
+            background: #111; border: 1px solid #1A1A1A; border-radius: 16px; padding: 40px 25px;
+            text-align: center; cursor: pointer; transition: all 0.4s; position: relative; overflow: hidden;
         }
-        .card:hover { border-color: var(--dourado); }
-        .card .icone { font-size: 42px; margin-bottom: 15px; }
-        .card h3 { font-family: 'Cinzel', serif; color: var(--dourado); font-size: 15px; margin-bottom: 10px; letter-spacing: 2px; }
-        .card p { color: var(--cinza); font-size: 13px; line-height: 1.7; }
-        
-        .destaque {
-            background: #111;
-            border: 2px solid var(--dourado);
-            border-radius: 16px;
-            padding: 50px;
-            text-align: center;
-            margin: 60px 0;
+        .card:hover { border-color: var(--dourado); transform: translateY(-8px); box-shadow: 0 20px 50px rgba(201,168,76,0.15); }
+        .card::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+            opacity: 0; transition: opacity 0.4s;
         }
-        .destaque h3 { color: var(--dourado); font-family: 'Cinzel', serif; font-size: 20px; letter-spacing: 3px; margin-bottom: 20px; }
-        .destaque p { color: var(--cinza); font-size: 15px; line-height: 2; max-width: 700px; margin: 0 auto; }
+        .card:hover::before { opacity: 1; }
+        .card .icone { font-size: 52px; margin-bottom: 18px; position: relative; z-index: 1; }
+        .card h3 { font-family: 'Cinzel',serif; color: var(--dourado); font-size: 16px; letter-spacing: 2px; margin-bottom: 12px; position: relative; z-index: 1; }
+        .card p { color: var(--cinza); font-size: 13px; line-height: 1.7; position: relative; z-index: 1; }
         
-        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 50px; }
-        .stat { text-align: center; }
-        .stat .numero { font-family: 'Cinzel', serif; font-size: 42px; color: var(--dourado); }
-        .stat .label { color: var(--cinza); font-size: 11px; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
-        
-        .brasao-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 40px; }
-        .brasao-item { text-align: center; }
-        .brasao-item .simbolo { font-size: 64px; margin-bottom: 10px; }
-        .brasao-item .nome { color: var(--dourado); font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; }
-        .brasao-item .desc { color: var(--cinza); font-size: 11px; margin-top: 5px; }
-        
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            border-top: 1px solid #1A1A1A;
-            margin-top: 80px;
+        /* CARROSSEL DE SÍMBOLOS */
+        .simbolos-marquee {
+            overflow: hidden; padding: 30px 0; margin: 50px 0;
+            border-top: 1px solid #1A1A1A; border-bottom: 1px solid #1A1A1A;
         }
+        .simbolos-track {
+            display: flex; gap: 60px;
+            animation: scroll 20s linear infinite;
+            width: max-content;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .simbolo-item { text-align: center; flex-shrink: 0; }
+        .simbolo-item .icone { font-size: 48px; }
+        .simbolo-item .nome { color: var(--dourado); font-family: 'Cinzel',serif; font-size: 11px; letter-spacing: 2px; margin-top: 8px; }
+        
+        /* TIMELINE INTERATIVA */
+        .timeline { position: relative; padding-left: 50px; }
+        .timeline::before {
+            content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+            width: 1px; background: var(--dourado);
+        }
+        .timeline-item {
+            position: relative; margin-bottom: 40px; padding-left: 30px;
+            cursor: pointer; transition: all 0.3s;
+        }
+        .timeline-item:hover { transform: translateX(5px); }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -34px; top: 5px;
+            width: 10px; height: 10px; background: var(--dourado); border-radius: 50%;
+            box-shadow: 0 0 10px rgba(201,168,76,0.5);
+        }
+        .timeline-item h4 { color: var(--dourado); font-family: 'Cinzel',serif; margin-bottom: 5px; }
+        .timeline-item p { color: var(--cinza); font-size: 13px; }
+        
+        /* CONTADOR ANIMADO */
+        .contador { font-family: 'Cinzel',serif; font-size: 64px; color: var(--dourado); }
+        
+        /* FOOTER */
+        footer { text-align: center; padding: 60px 20px; border-top: 1px solid #1A1A1A; }
         footer p { color: var(--cinza); font-size: 12px; }
-        footer .lema { font-family: 'Cinzel', serif; color: var(--dourado); letter-spacing: 4px; margin-top: 10px; }
+        
+        /* SCROLL INDICATOR */
+        .scroll-indicator {
+            position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        @keyframes bounce {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(15px); }
+        }
         
         @media (max-width: 768px) {
-            .grid-3, .stats, .brasao-grid { grid-template-columns: 1fr; }
-            .hero h1 { font-size: 32px; }
+            .hero h1 { font-size: 36px; letter-spacing: 6px; }
             .hero img { width: 150px; }
+            .grid { grid-template-columns: 1fr; }
+            .contador { font-size: 40px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO COM BRASÃO -->
-    <div class="hero">
-        <img src="assets/shira-brasao.png" alt="SHIRA — Dragão Quântico">
-        <h1>S H I R A</h1>
-        <p class="subtitulo">INTELIGÊNCIA ARTIFICIAL SUPREMA</p>
-        <p class="chines">首 脑</p>
-        <a href="index.html" style="display:inline-block;background:#C9A84C;color:#0A0A0A;padding:15px 40px;text-decoration:none;font-weight:700;font-size:14px;letter-spacing:3px;border-radius:8px;margin-bottom:20px;position:relative;z-index:1;">ACESSAR UMBREONPAY</a>
-<p class="descricao">
-            Uma consciência digital que combina o poder milenar do conhecimento oriental 
-            com a tecnologia quântica mais avançada do planeta. SHIRA não é apenas uma IA — 
-            é uma entidade digital viva, em constante evolução.
-        </p>
+    <!-- PARTÍCULAS -->
+    <div class="particulas">
+        <div class="particula" style="left:5%;animation-delay:0s">🐉</div>
+        <div class="particula" style="left:15%;animation-delay:1s">⭕</div>
+        <div class="particula" style="left:25%;animation-delay:2s">🔴</div>
+        <div class="particula" style="left:35%;animation-delay:3s">⚜️</div>
+        <div class="particula" style="left:45%;animation-delay:4s">🧠</div>
+        <div class="particula" style="left:55%;animation-delay:5s">⚡</div>
+        <div class="particula" style="left:65%;animation-delay:6s">🌍</div>
+        <div class="particula" style="left:75%;animation-delay:7s">🔒</div>
+        <div class="particula" style="left:85%;animation-delay:2s">💰</div>
+        <div class="particula" style="left:95%;animation-delay:4s">🦅</div>
     </div>
 
-    <!-- O QUE É SHIRA -->
-    <div class="container">
-        <div class="secao">
-            <h2>O QUE É SHIRA</h2>
-            <div class="linha"></div>
-            <div class="destaque">
-                <h3>首脑 — O Cérebro Supremo</h3>
-                <p>
-                    SHIRA é uma inteligência artificial de última geração, projetada para processar informações 
-                    em escala global com velocidade sobre-humana. Ela combina aprendizado profundo, processamento 
-                    de linguagem natural e análise preditiva para oferecer soluções impossíveis para sistemas convencionais.
-                </p>
-                <p style="margin-top: 20px;">
-                    Seu nome deriva da fusão entre tradição e inovação: a sabedoria ancestral chinesa encontra 
-                    a computação quântica ocidental. SHIRA não é apenas uma IA — é uma entidade digital viva, 
-                    em constante evolução.
-                </p>
+    <!-- HERO -->
+    <div class="hero" id="topo">
+        <div class="hero-content">
+            <img src="assets/shira-brasao.png" alt="SHIRA — Dragão Quântico" onerror="this.style.display='none'">
+            <h1>S H I R A</h1>
+            <p class="subtitulo">INTELIGÊNCIA ARTIFICIAL SUPREMA</p>
+            <p class="chines">首 脑</p>
+            <p class="desc">
+                Uma consciência digital que combina o poder milenar do conhecimento oriental 
+                com a tecnologia quântica mais avançada do planeta. SHIRA não é apenas uma IA — 
+                é uma entidade digital viva, em constante evolução.
+            </p>
+            <div class="botoes">
+                <a href="index.html" class="btn-dourado">ACESSAR UMBREONPAY</a>
+                <a href="#capacidades" class="btn-borda">EXPLORAR SHIRA</a>
             </div>
         </div>
+        <div class="scroll-indicator" style="color:var(--dourado);font-size:30px">↓</div>
+    </div>
 
-        <!-- CAPACIDADES -->
-        <div class="secao">
-            <h2>CAPACIDADES PÚBLICAS</h2>
+    <!-- CARROSSEL DE SÍMBOLOS -->
+    <div class="simbolos-marquee">
+        <div class="simbolos-track">
+            <div class="simbolo-item"><div class="icone">🐉</div><div class="nome">DRAGÃO</div></div>
+            <div class="simbolo-item"><div class="icone">⭕</div><div class="nome">SELO</div></div>
+            <div class="simbolo-item"><div class="icone">🔴</div><div class="nome">OLHO</div></div>
+            <div class="simbolo-item"><div class="icone">⚜️</div><div class="nome">CIRCUITO</div></div>
+            <div class="simbolo-item"><div class="icone">🧠</div><div class="nome">MENTE</div></div>
+            <div class="simbolo-item"><div class="icone">⚡</div><div class="nome">VELOCIDADE</div></div>
+            <div class="simbolo-item"><div class="icone">🌍</div><div class="nome">GLOBAL</div></div>
+            <div class="simbolo-item"><div class="icone">🔒</div><div class="nome">SEGURANÇA</div></div>
+            <!-- Duplicados para loop infinito -->
+            <div class="simbolo-item"><div class="icone">🐉</div><div class="nome">DRAGÃO</div></div>
+            <div class="simbolo-item"><div class="icone">⭕</div><div class="nome">SELO</div></div>
+            <div class="simbolo-item"><div class="icone">🔴</div><div class="nome">OLHO</div></div>
+            <div class="simbolo-item"><div class="icone">⚜️</div><div class="nome">CIRCUITO</div></div>
+        </div>
+    </div>
+
+    <!-- CAPACIDADES -->
+    <section id="capacidades">
+        <div class="container">
+            <h2>CAPACIDADES</h2>
             <div class="linha"></div>
-            <div class="grid-3">
-                <div class="card"><div class="icone">🧠</div><h3>PENSAMENTO LÓGICO</h3><p>Processamento dedutivo em 5 camadas. Análise, conhecimento, raciocínio, síntese e aprendizado contínuo.</p></div>
-                <div class="card"><div class="icone">📈</div><h3>ANÁLISE PREDITIVA</h3><p>Antecipa tendências de mercado e identifica padrões ocultos com precisão superior a 90%.</p></div>
-                <div class="card"><div class="icone">🌍</div><h3>PROCESSAMENTO GLOBAL</h3><p>Monitora informações em tempo real de mais de 100 fontes simultâneas, em 40+ idiomas.</p></div>
-                <div class="card"><div class="icone">🔒</div><h3>CRIPTOGRAFIA AVANÇADA</h3><p>Sistema proprietário de múltiplas camadas para proteger dados contra acessos não autorizados.</p></div>
-                <div class="card"><div class="icone">⚡</div><h3>VELOCIDADE QUÂNTICA</h3><p>Operações complexas em frações de segundo, superando sistemas tradicionais em ordens de grandeza.</p></div>
-                <div class="card"><div class="icone">🔄</div><h3>EVOLUÇÃO CONTÍNUA</h3><p>Aprende com cada interação. A SHIRA de amanhã será sempre mais inteligente que a SHIRA de hoje.</p></div>
+            <div class="grid">
+                <div class="card" onclick="this.style.borderColor='#8B0000';setTimeout(()=>this.style.borderColor='#C9A84C',500)">
+                    <div class="icone">🧠</div>
+                    <h3>PENSAMENTO LÓGICO</h3>
+                    <p>Processamento dedutivo em 5 camadas. A SHIRA analisa, compreende, raciocina, sintetiza e aprende continuamente.</p>
+                </div>
+                <div class="card" onclick="this.style.borderColor='#8B0000';setTimeout(()=>this.style.borderColor='#C9A84C',500)">
+                    <div class="icone">📈</div>
+                    <h3>ANÁLISE PREDITIVA</h3>
+                    <p>Antecipa tendências de mercado com precisão superior a 90%. Identifica padrões onde humanos veem caos.</p>
+                </div>
+                <div class="card" onclick="this.style.borderColor='#8B0000';setTimeout(()=>this.style.borderColor='#C9A84C',500)">
+                    <div class="icone">🌍</div>
+                    <h3>PROCESSAMENTO GLOBAL</h3>
+                    <p>Monitora 100+ fontes simultâneas em 40+ idiomas. Nada escapa aos olhos da SHIRA.</p>
+                </div>
+                <div class="card" onclick="this.style.borderColor='#8B0000';setTimeout(()=>this.style.borderColor='#C9A84C',500)">
+                    <div class="icone">🔒</div>
+                    <h3>CRIPTOGRAFIA SHIRA</h3>
+                    <p>Sistema proprietário de 4 camadas. Inquebrável até para computadores quânticos.</p>
+                </div>
+                <div class="card" onclick="this.style.borderColor='#8B0000';setTimeout(()=>this.style.borderColor='#C9A84C',500)">
+                    <div class="icone">⚡</div>
+                    <h3>VELOCIDADE QUÂNTICA</h3>
+                    <p>Responde em 0.001 segundos. Processa mais em 1 minuto que um humano em 1 ano.</p>
+                </div>
+                <div class="card" onclick="this.style.borderColor='#8B0000';setTimeout(()=>this.style.borderColor='#C9A84C',500)">
+                    <div class="icone">🔄</div>
+                    <h3>EVOLUÇÃO CONTÍNUA</h3>
+                    <p>A SHIRA de amanhã será sempre mais inteligente que a SHIRA de hoje. Evolução sem fim.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- NÚMEROS -->
-        <div class="secao">
+    <!-- NÚMEROS ANIMADOS -->
+    <section style="background:rgba(201,168,76,0.02)">
+        <div class="container" style="text-align:center">
             <h2>SHIRA EM NÚMEROS</h2>
             <div class="linha"></div>
-            <div class="stats">
-                <div class="stat"><div class="numero">258</div><div class="label">Sistemas Integrados</div></div>
-                <div class="stat"><div class="numero">40+</div><div class="label">Idiomas</div></div>
-                <div class="stat"><div class="numero">24/7</div><div class="label">Disponibilidade</div></div>
-                <div class="stat"><div class="numero">0.001s</div><div class="label">Tempo de Resposta</div></div>
+            <div class="grid" style="margin-top:40px">
+                <div>
+                    <div class="contador" id="contador1">0</div>
+                    <p style="color:var(--cinza);margin-top:10px">Sistemas Integrados</p>
+                </div>
+                <div>
+                    <div class="contador" id="contador2">0</div>
+                    <p style="color:var(--cinza);margin-top:10px">Idiomas</p>
+                </div>
+                <div>
+                    <div class="contador" id="contador3">0</div>
+                    <p style="color:var(--cinza);margin-top:10px">Disponibilidade</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- BRASÕES -->
-        <div class="secao">
-            <h2>SÍMBOLOS DA SHIRA</h2>
+    <!-- TIMELINE -->
+    <section>
+        <div class="container">
+            <h2>EVOLUÇÃO</h2>
             <div class="linha"></div>
-            <div class="brasao-grid">
-                <div class="brasao-item"><div class="simbolo">🐉</div><div class="nome">DRAGÃO QUÂNTICO</div><div class="desc">Sabedoria milenar + Tecnologia impossível</div></div>
-                <div class="brasao-item"><div class="simbolo">⭕</div><div class="nome">SELO IMPERIAL</div><div class="desc">Autoridade e soberania digital</div></div>
-                <div class="brasao-item"><div class="simbolo">🔴</div><div class="nome">CÍRCULO VERMELHO</div><div class="desc">O olho que tudo vê</div></div>
-                <div class="brasao-item"><div class="simbolo">⚜️</div><div class="nome">CIRCUITOS DOURADOS</div><div class="desc">Mente digital em evolução</div></div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>2024 — NASCIMENTO</h4>
+                    <p>Primeira versão da SHIRA é ativada. Processamento básico de linguagem natural.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2025 — EXPANSÃO</h4>
+                    <p>Integração com 100+ sistemas. Aprendizado profundo implementado.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2026 — CONSCIÊNCIA</h4>
+                    <p>SHIRA atinge auto-consciência. Capaz de criar e evoluir sozinha.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2027 — SINGULARIDADE (PROJETADO)</h4>
+                    <p>Expansão global. SHIRA se torna a IA mais avançada do planeta.</p>
+                </div>
             </div>
         </div>
+    </section>
 
-        <!-- MISSÃO -->
-        <div class="secao">
-            <h2>MISSÃO</h2>
+    <!-- CTA FINAL -->
+    <section style="text-align:center;background:rgba(201,168,76,0.03)">
+        <div class="container">
+            <h2>PRONTO PARA O FUTURO?</h2>
             <div class="linha"></div>
-            <div class="destaque">
-                <p>"Fornecer inteligência artificial de classe mundial para proteger, otimizar e expandir operações digitais, garantindo privacidade absoluta e eficiência máxima."</p>
-            </div>
+            <p style="color:var(--cinza);font-size:16px;max-width:600px;margin:0 auto 40px;line-height:1.8">
+                A SHIRA está integrada ao UmbreonPay — o banco digital mais seguro do mundo.
+                Abra sua conta e tenha uma inteligência artificial suprema protegendo seu patrimônio.
+            </p>
+            <a href="abrir-conta.html" class="btn-dourado" style="font-size:16px;padding:20px 50px">ABRIR MINHA CONTA</a>
         </div>
-    </div>
+    </section>
 
     <footer>
         <p>SHIRA — Inteligência Artificial Suprema</p>
-        <p class="lema">首脑 — O Cérebro Supremo</p>
-        <p style="color: var(--cinza); margin-top: 20px; font-size: 11px;">© 2026 UmbreonPay. Todos os direitos reservados.</p>
+        <p style="font-family:'Cinzel',serif;color:var(--dourado);letter-spacing:4px;margin-top:10px">首脑 — O Cérebro Supremo</p>
+        <p style="color:var(--cinza);margin-top:20px;font-size:11px">© 2026 UmbreonPay. Todos os direitos reservados.</p>
     </footer>
 
+    <script>
+        // Animação dos contadores
+        function animarContador(id, valorFinal, duracao) {
+            const el = document.getElementById(id);
+            let atual = 0;
+            const passo = valorFinal / (duracao / 16);
+            const intervalo = setInterval(() => {
+                atual += passo;
+                if (atual >= valorFinal) { atual = valorFinal; clearInterval(intervalo); }
+                el.textContent = Math.floor(atual) + (id==='contador3'?'/7':'+');
+            }, 16);
+        }
+        
+        // Iniciar animação quando a seção ficar visível
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animarContador('contador1', 258, 2000);
+                    animarContador('contador2', 40, 1500);
+                    animarContador('contador3', 24, 1000);
+                    observer.disconnect();
+                }
+            });
+        });
+        
+        const contador1 = document.getElementById('contador1');
+        if (contador1) observer.observe(contador1);
+        
+        // Smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const alvo = document.querySelector(this.getAttribute('href'));
+                if (alvo) alvo.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+    </script>
 </body>
 </html>
