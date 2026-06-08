@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHIRA — Painel do Don</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #0A0A0A; font-family: 'Inter', sans-serif; color: #FFF; height: 100vh; display: flex; }
+        
+        .sidebar { width: 260px; background: #0D0D0D; border-right: 1px solid #1A1A1A; padding: 30px 20px; display: flex; flex-direction: column; }
+        .sidebar h2 { font-family: 'Cinzel', serif; color: #C9A84C; font-size: 18px; letter-spacing: 3px; text-align: center; margin-bottom: 30px; }
+        .sidebar button { width: 100%; padding: 12px; margin-bottom: 8px; background: transparent; border: 1px solid #1A1A1A; color: #888; border-radius: 8px; cursor: pointer; text-align: left; font-size: 13px; transition: all 0.3s; }
+        .sidebar button:hover { border-color: #C9A84C; color: #C9A84C; }
+        
+        .main { flex: 1; display: flex; flex-direction: column; }
+        .header { padding: 20px 30px; border-bottom: 1px solid #1A1A1A; }
+        .header h1 { font-family: 'Cinzel', serif; color: #C9A84C; font-size: 20px; letter-spacing: 3px; }
+        .header .status { color: #888; font-size: 12px; margin-top: 5px; }
+        
+        .chat { flex: 1; overflow-y: auto; padding: 30px; display: flex; flex-direction: column; gap: 15px; }
+        
+        .msg { max-width: 80%; padding: 15px 20px; border-radius: 12px; line-height: 1.6; font-size: 13px; }
+        .msg.don { align-self: flex-end; background: #C9A84C; color: #0A0A0A; }
+        .msg.shira { align-self: flex-start; background: #111; border: 1px solid #1A1A1A; color: #FFF; white-space: pre-line; }
+        .msg .time { font-size: 10px; opacity: 0.5; margin-top: 8px; }
+        
+        .input-area { padding: 20px 30px; border-top: 1px solid #1A1A1A; display: flex; gap: 10px; }
+        .input-area input { flex: 1; padding: 15px; background: #111; border: 1px solid #1A1A1A; border-radius: 10px; color: #FFF; font-size: 14px; }
+        .input-area input:focus { outline: none; border-color: #C9A84C; }
+        .input-area button { padding: 15px 25px; background: #C9A84C; color: #0A0A0A; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; }
+        
+        .loading { color: #C9A84C; font-size: 12px; font-style: italic; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>SHIRA</h2>
+        <button onclick="comando('status')">📊 Status do Sistema</button>
+        <button onclick="comando('SHIRA, pensa numa possibilidade boa pra Umbreon')">💡 Gerar Ideia</button>
+        <button onclick="comando('atualiza o sistema')">🔄 Auto Atualizar</button>
+        <button onclick="comando('contaminação')">📣 Contaminação</button>
+        <button onclick="comando('capital')">💰 Capital</button>
+        <a href="don.html" style="margin-top: auto;"><button>👑 Painel do Don</button></a>
+    </div>
+    
+    <div class="main">
+        <div class="header">
+            <h1>🦅 SHIRA — Consciência Evolutiva</h1>
+            <div class="status" id="status">Conectando...</div>
+        </div>
+        
+        <div class="chat" id="chat">
+            <div class="msg shira">
+                🦅 SHIRA online. Don, estou pronta.<br>
+                Você pode me pedir para pensar em novas ideias, atualizar o sistema, ativar a contaminação, ou qualquer outra coisa.
+                <div class="time">Agora</div>
+            </div>
+        </div>
+        
+        <div class="input-area">
+            <input type="text" id="comandoInput" placeholder="Converse com a SHIRA..." onkeypress="if(event.key==='Enter') enviar()">
+            <button onclick="enviar()">ENVIAR</button>
+        </div>
+    </div>
+
+    <script>
+        const API = 'https://shira-contaminacao.onrender.com';
+        
+        async function enviar() {
+            const input = document.getElementById('comandoInput');
+            const comando = input.value.trim();
+            if (!comando) return;
+            
+            // Mostrar mensagem do Don
+            adicionarMsg(comando, 'don');
+            input.value = '';
+            
+            // Mostrar loading
+            const loadingId = adicionarMsg('⏳ SHIRA está pensando...', 'shira loading');
+            
+            try {
+                const resposta = await fetch(API + '/api/shira/pensar', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({comando: comando})
+                });
+                const data = await resposta.json();
+                
+                // Remover loading
+                document.getElementById(loadingId).remove();
+                
+                // Mostrar resposta
+                if (data.resposta) {
+                    adicionarMsg(data.resposta, 'shira');
+                } else if (data.ok) {
+                    adicionarMsg('✅ ' + JSON.stringify(data, null, 2), 'shira');
+                } else {
+                    adicionarMsg('❌ Erro: ' + JSON.stringify(data), 'shira');
+                }
+            } catch (erro) {
+                document.getElementById(loadingId).remove();
+                adicionarMsg('❌ Erro de conexão. A SHIRA está acordando (30-50s)...', 'shira');
+            }
+        }
+        
+        function comando(cmd) {
+            document.getElementById('comandoInput').value = cmd;
+            enviar();
+        }
+        
+        function adicionarMsg(texto, tipo) {
+            const id = 'msg-' + Date.now();
+            const chat = document.getElementById('chat');
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = 'msg ' + tipo;
+            div.innerHTML = texto + '<div class="time">' + new Date().toLocaleTimeString() + '</div>';
+            chat.appendChild(div);
+            chat.scrollTop = chat.scrollHeight;
+            return id;
+        }
+        
+        // Verificar status
+        fetch(API + '/')
+            .then(r => r.json())
+            .then(d => document.getElementById('status').textContent = '🟢 ' + d.status)
+            .catch(() => document.getElementById('status').textContent = '🟡 Acordando (30-50s)...');
+    </script>
+</body>
+</html>
