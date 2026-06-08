@@ -45,7 +45,7 @@
     <script>
     async function atualizar() {
         try {
-            const r = await fetch('https://ouroboros-tws.onrender.com/api/ouroboros/status');
+            const r = await fetch('https://ouroboros-shira.onrender.com/api/ouroboros/status');
             const d = await r.json();
             document.getElementById('capital').textContent = 'R$ ' + d.capital.toLocaleString();
             document.getElementById('lucroHoje').textContent = 'R$ ' + d.lucro_hoje.toLocaleString();
