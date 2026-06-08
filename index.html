@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#C9A84C">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="UmbreonPay">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UmbreonPay — Potestas in Umbra</title>
@@ -156,5 +162,6 @@
         document.getElementById('live-contas').textContent = (1342 + Math.floor(Math.random() * 5)).toLocaleString();
     }, 3000);
     </script>
+<script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}</script>
 </body>
 </html>
