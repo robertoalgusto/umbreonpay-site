@@ -5,99 +5,369 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Abrir Conta — UmbreonPay</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+        .register-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 100vh;
+        }
+
+        .register-left {
+            background: linear-gradient(135deg, #0A0A0A 0%, #1A1A1A 50%, #0A0A0A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .register-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .register-left-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 400px;
+        }
+
+        .register-left-content img {
+            width: 180px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 20px rgba(201,168,76,0.3));
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .register-left-content h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 28px;
+            color: #C9A84C;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .register-left-content p {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+
+        .features-list {
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: #888;
+            font-size: 13px;
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(201,168,76,0.1);
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .register-right {
+            background: #0D0D0D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+        }
+
+        .register-form-wrapper {
+            max-width: 450px;
+            width: 100%;
+        }
+
+        .register-form-wrapper h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            color: #C9A84C;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+        }
+
+        .register-form-wrapper .subtitle {
+            color: #888;
+            font-size: 13px;
+            margin-bottom: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .form-group label {
+            display: block;
+            color: #666;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            background: #111;
+            border: 1px solid #222;
+            color: #FFF;
+            font-size: 14px;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s;
+            border-radius: 4px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #C9A84C;
+            box-shadow: 0 0 0 2px rgba(201,168,76,0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #444;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #C9A84C 0%, #8B7500 100%);
+            color: #0A0A0A;
+            border: none;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(201,168,76,0.3);
+        }
+
+        .mensagem {
+            text-align: center;
+            margin: 20px 0;
+            font-size: 14px;
+            font-weight: 600;
+            min-height: 24px;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 30px;
+            color: #666;
+            font-size: 13px;
+        }
+
+        .login-link a {
+            color: #C9A84C;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        .seguranca-selos {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .selo {
+            background: #111;
+            padding: 10px 15px;
+            border: 1px solid #222;
+            font-size: 10px;
+            color: #666;
+            letter-spacing: 1px;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .register-container {
+                grid-template-columns: 1fr;
+            }
+            .register-left {
+                display: none;
+            }
+            .register-right {
+                padding: 40px 20px;
+                min-height: 100vh;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="logo">UMBREONPAY</div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="sobre.html">Sobre</a></li>
-                <li><a href="servicos.html">Serviços</a></li>
-                <li><a href="taxas.html">Taxas</a></li>
-                <li><a href="seguranca.html">Segurança</a></li>
-                <li><a href="contato.html">Contato</a></li>
-            </ul>
-            <div class="nav-buttons">
-                <a href="login.html" class="btn-outline">Entrar</a>
-                <a href="abrir-conta.html" class="btn-gold">Abrir Conta</a>
-            </div>
-        </nav>
-    </header>
-
-    <section style="padding-top: 150px;" class="section-dark">
-        <div class="container">
-            <h2>Abrir Sua Conta</h2>
-            <div class="divider-small"></div>
-            <div class="form-container">
-                <form id="formCadastro" onsubmit="cadastrar(event)">
-                    <div class="form-group">
-                        <input type="text" id="nome" placeholder="Nome completo" required>
+    <div class="register-container">
+        <!-- LADO ESQUERDO — APRESENTAÇÃO -->
+        <div class="register-left">
+            <div class="register-left-content">
+                <img src="assets/brasao.png" alt="UmbreonPay">
+                <h2>UMBREONPAY</h2>
+                <p style="font-family:'Cinzel',serif;color:#C9A84C;letter-spacing:4px;font-size:12px;">POTESTAS IN UMBRA</p>
+                <p>Junte-se à instituição financeira que está redefinindo a privacidade no mundo.</p>
+                
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">🔒</div>
+                        <span>Criptografia de nível militar em todas as transações</span>
                     </div>
-                    <div class="form-group">
-                        <input type="text" id="cpf" placeholder="CPF" required>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <span>Conta aberta em menos de 3 minutos</span>
                     </div>
-                    <div class="form-group">
-                        <input type="email" id="email" placeholder="E-mail" required>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌍</div>
+                        <span>Operando em 100+ países, 24 horas por dia</span>
                     </div>
-                    <div class="form-group">
-                        <input type="tel" id="telefone" placeholder="Telefone">
+                    <div class="feature-item">
+                        <div class="feature-icon">💎</div>
+                        <span>Rendimento de até 5% ao mês</span>
                     </div>
-                    <div class="form-group">
-                        <input type="password" id="senha" placeholder="Senha (8 dígitos)" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" id="confirmar" placeholder="Confirmar senha" required>
-                    </div>
-                    <div id="mensagem" style="text-align: center; margin: 15px 0;"></div>
-                    <button type="submit">CRIAR CONTA</button>
-                </form>
+                </div>
             </div>
         </div>
-    </section>
 
-    <footer>
-        <p>UMBREONPAY — POTESTAS IN UMBRA</p>
-        <p class="footer-small">© 2026 UmbreonPay. Todos os direitos reservados.</p>
-    </footer>
+        <!-- LADO DIREITO — FORMULÁRIO -->
+        <div class="register-right">
+            <div class="register-form-wrapper">
+                <h3>ABRIR CONTA</h3>
+                <p class="subtitle">Preencha os dados abaixo e comece agora.</p>
+                
+                <form id="formCadastro" onsubmit="cadastrar(event)">
+                    <div class="form-group">
+                        <label>Nome completo</label>
+                        <input type="text" id="nome" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" id="cpf" placeholder="000.000.000-00" required>
+                    </div>
+                    <div class="form-group">
+                        <label>E-mail</label>
+                        <input type="email" id="email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" id="senha" placeholder="Mínimo 8 caracteres" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirmar senha</label>
+                        <input type="password" id="confirmar" placeholder="Repita a senha" required>
+                    </div>
+                    
+                    <div class="mensagem" id="msg"></div>
+                    
+                    <button type="submit" class="btn-submit">CRIAR CONTA</button>
+                </form>
+
+                <div class="seguranca-selos">
+                    <div class="selo">🔒 AES-256</div>
+                    <div class="selo">🛡️ ANTI-MED</div>
+                    <div class="selo">🌍 3 CONTINENTES</div>
+                </div>
+
+                <p class="login-link">
+                    Já tem uma conta? <a href="login.html">Entrar</a>
+                </p>
+            </div>
+        </div>
+    </div>
 
     <script>
-    function cadastrar(event) {
-        event.preventDefault();
+    async function cadastrar(e) {
+        e.preventDefault();
         const senha = document.getElementById('senha').value;
         const confirmar = document.getElementById('confirmar').value;
-        const msg = document.getElementById('mensagem');
-        
+        const msg = document.getElementById('msg');
+
         if (senha !== confirmar) {
-            msg.innerHTML = '<span style="color: red;">Senhas não conferem</span>';
+            msg.innerHTML = '<span style="color:#FF1744">❌ Senhas não conferem</span>';
             return;
         }
-        
+        if (senha.length < 8) {
+            msg.innerHTML = '<span style="color:#FF1744">❌ Senha deve ter no mínimo 8 caracteres</span>';
+            return;
+        }
+
+        msg.innerHTML = '<span style="color:#C9A84C">⏳ Criando sua conta...</span>';
+
         const dados = {
             nome: document.getElementById('nome').value,
-            cpf: document.getElementById('cpf').value,
+            cpf: document.getElementById('cpf').value.replace(/\D/g,''),
             email: document.getElementById('email').value,
             senha: senha
         };
-        
-        msg.innerHTML = '<span style="color: #C9A84C;">Processando...</span>';
-        
-        fetch('https://umbreonpay-api.onrender.com/api/cadastrar', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(dados)
-        })
-        .then(r => r.json())
-        .then(data => {
-            if (data.status === 'ok') {
-                msg.innerHTML = '<span style="color: green;">✅ ' + data.mensagem + '</span>';
+
+        try {
+            const resposta = await fetch('https://umbreonpay-api.onrender.com/api/auth/cadastrar', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(dados)
+            });
+            const data = await resposta.json();
+
+            if (data.ok) {
+                msg.innerHTML = `
+                    <span style="color:#00C853">✅ ${data.mensagem}</span><br>
+                    <span style="color:#C9A84C;font-size:12px;">Seu código de afiliado: ${data.codigo_afiliado}</span>
+                `;
+                document.getElementById('formCadastro').reset();
             } else {
-                msg.innerHTML = '<span style="color: red;">❌ ' + data.mensagem + '</span>';
+                msg.innerHTML = `<span style="color:#FF1744">❌ ${data.erro}</span>`;
             }
-        })
-        .catch(() => {
-            msg.innerHTML = '<span style="color: #C9A84C;">📡 Servidor offline. Conta será ativada em breve.</span>';
-        });
+        } catch(erro) {
+            msg.innerHTML = '<span style="color:#C9A84C">📡 Conectando ao servidor...</span>';
+            setTimeout(() => msg.innerHTML = '<span style="color:#FF1744">❌ Erro de conexão. Tente novamente.</span>', 5000);
+        }
     }
     </script>
 </body>
