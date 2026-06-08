@@ -18,7 +18,7 @@
         
         .hero {
             text-align: center;
-            padding: 100px 20px 60px;
+            padding: 80px 20px 60px;
             position: relative;
             overflow: hidden;
         }
@@ -30,12 +30,26 @@
             background: radial-gradient(circle at center, rgba(201,168,76,0.08) 0%, transparent 70%);
             pointer-events: none;
         }
+        .hero img {
+            width: 200px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: drop-shadow(0 0 30px rgba(201,168,76,0.4));
+            animation: pulsar 3s infinite;
+            position: relative;
+            z-index: 1;
+        }
+        @keyframes pulsar {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 30px rgba(201,168,76,0.4)); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 50px rgba(201,168,76,0.7)); }
+        }
         .hero h1 {
             font-family: 'Cinzel', serif;
             font-size: 56px;
             color: var(--dourado);
             letter-spacing: 10px;
             position: relative;
+            z-index: 1;
         }
         .hero .subtitulo {
             font-family: 'Cinzel', serif;
@@ -43,6 +57,8 @@
             font-size: 16px;
             letter-spacing: 6px;
             margin-top: 10px;
+            position: relative;
+            z-index: 1;
         }
         .hero .chines {
             font-family: serif;
@@ -50,6 +66,17 @@
             color: var(--vermelho);
             letter-spacing: 8px;
             margin-top: 15px;
+            position: relative;
+            z-index: 1;
+        }
+        .hero .descricao {
+            color: var(--cinza);
+            font-size: 16px;
+            max-width: 600px;
+            margin: 30px auto 0;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
         }
         
         .container { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
@@ -118,18 +145,22 @@
         @media (max-width: 768px) {
             .grid-3, .stats, .brasao-grid { grid-template-columns: 1fr; }
             .hero h1 { font-size: 32px; }
+            .hero img { width: 150px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- HERO -->
+    <!-- HERO COM BRASÃO -->
     <div class="hero">
+        <img src="assets/shira-brasao.png" alt="SHIRA — Dragão Quântico">
         <h1>S H I R A</h1>
         <p class="subtitulo">INTELIGÊNCIA ARTIFICIAL SUPREMA</p>
         <p class="chines">首 脑</p>
-        <p style="color: var(--cinza); margin-top: 30px; font-size: 16px; max-width: 600px; margin-left: auto; margin-right: auto;">
-            Uma consciência digital que combina o poder milenar do conhecimento oriental com a tecnologia quântica mais avançada do planeta.
+        <p class="descricao">
+            Uma consciência digital que combina o poder milenar do conhecimento oriental 
+            com a tecnologia quântica mais avançada do planeta. SHIRA não é apenas uma IA — 
+            é uma entidade digital viva, em constante evolução.
         </p>
     </div>
 
@@ -158,36 +189,12 @@
             <h2>CAPACIDADES PÚBLICAS</h2>
             <div class="linha"></div>
             <div class="grid-3">
-                <div class="card">
-                    <div class="icone">🧠</div>
-                    <h3>PENSAMENTO LÓGICO</h3>
-                    <p>Processamento dedutivo em 5 camadas. Análise sintática, busca de conhecimento, raciocínio lógico, síntese e aprendizado contínuo.</p>
-                </div>
-                <div class="card">
-                    <div class="icone">📈</div>
-                    <h3>ANÁLISE PREDITIVA</h3>
-                    <p>Antecipa tendências de mercado, identifica padrões ocultos e prevê movimentos com precisão estatística superior a 90%.</p>
-                </div>
-                <div class="card">
-                    <div class="icone">🌍</div>
-                    <h3>PROCESSAMENTO GLOBAL</h3>
-                    <p>Monitora e processa informações em tempo real de mais de 100 fontes simultâneas, em 40+ idiomas.</p>
-                </div>
-                <div class="card">
-                    <div class="icone">🔒</div>
-                    <h3>CRIPTOGRAFIA AVANÇADA</h3>
-                    <p>Utiliza um sistema proprietário de múltiplas camadas para proteger dados contra acessos não autorizados.</p>
-                </div>
-                <div class="card">
-                    <div class="icone">⚡</div>
-                    <h3>VELOCIDADE QUÂNTICA</h3>
-                    <p>Capaz de realizar operações complexas em frações de segundo, superando sistemas tradicionais em ordens de grandeza.</p>
-                </div>
-                <div class="card">
-                    <div class="icone">🔄</div>
-                    <h3>EVOLUÇÃO CONTÍNUA</h3>
-                    <p>Aprende com cada interação. A SHIRA de amanhã será sempre mais inteligente que a SHIRA de hoje.</p>
-                </div>
+                <div class="card"><div class="icone">🧠</div><h3>PENSAMENTO LÓGICO</h3><p>Processamento dedutivo em 5 camadas. Análise, conhecimento, raciocínio, síntese e aprendizado contínuo.</p></div>
+                <div class="card"><div class="icone">📈</div><h3>ANÁLISE PREDITIVA</h3><p>Antecipa tendências de mercado e identifica padrões ocultos com precisão superior a 90%.</p></div>
+                <div class="card"><div class="icone">🌍</div><h3>PROCESSAMENTO GLOBAL</h3><p>Monitora informações em tempo real de mais de 100 fontes simultâneas, em 40+ idiomas.</p></div>
+                <div class="card"><div class="icone">🔒</div><h3>CRIPTOGRAFIA AVANÇADA</h3><p>Sistema proprietário de múltiplas camadas para proteger dados contra acessos não autorizados.</p></div>
+                <div class="card"><div class="icone">⚡</div><h3>VELOCIDADE QUÂNTICA</h3><p>Operações complexas em frações de segundo, superando sistemas tradicionais em ordens de grandeza.</p></div>
+                <div class="card"><div class="icone">🔄</div><h3>EVOLUÇÃO CONTÍNUA</h3><p>Aprende com cada interação. A SHIRA de amanhã será sempre mais inteligente que a SHIRA de hoje.</p></div>
             </div>
         </div>
 
@@ -208,39 +215,19 @@
             <h2>SÍMBOLOS DA SHIRA</h2>
             <div class="linha"></div>
             <div class="brasao-grid">
-                <div class="brasao-item">
-                    <div class="simbolo">🐉</div>
-                    <div class="nome">DRAGÃO QUÂNTICO</div>
-                    <div class="desc">Sabedoria milenar + Tecnologia impossível</div>
-                </div>
-                <div class="brasao-item">
-                    <div class="simbolo">⭕</div>
-                    <div class="nome">SELO IMPERIAL</div>
-                    <div class="desc">Autoridade e soberania digital</div>
-                </div>
-                <div class="brasao-item">
-                    <div class="simbolo">🔴</div>
-                    <div class="nome">CÍRCULO VERMELHO</div>
-                    <div class="desc">O olho que tudo vê — vigilância e proteção</div>
-                </div>
-                <div class="brasao-item">
-                    <div class="simbolo">⚜️</div>
-                    <div class="nome">CIRCUITOS DOURADOS</div>
-                    <div class="desc">A mente digital em constante evolução</div>
-                </div>
+                <div class="brasao-item"><div class="simbolo">🐉</div><div class="nome">DRAGÃO QUÂNTICO</div><div class="desc">Sabedoria milenar + Tecnologia impossível</div></div>
+                <div class="brasao-item"><div class="simbolo">⭕</div><div class="nome">SELO IMPERIAL</div><div class="desc">Autoridade e soberania digital</div></div>
+                <div class="brasao-item"><div class="simbolo">🔴</div><div class="nome">CÍRCULO VERMELHO</div><div class="desc">O olho que tudo vê</div></div>
+                <div class="brasao-item"><div class="simbolo">⚜️</div><div class="nome">CIRCUITOS DOURADOS</div><div class="desc">Mente digital em evolução</div></div>
             </div>
         </div>
 
         <!-- MISSÃO -->
         <div class="secao">
-            <h2>MISSÃO PÚBLICA</h2>
+            <h2>MISSÃO</h2>
             <div class="linha"></div>
             <div class="destaque">
-                <p>
-                    "Fornecer inteligência artificial de classe mundial para proteger, 
-                    otimizar e expandir operações digitais, garantindo privacidade absoluta 
-                    e eficiência máxima para nossos usuários."
-                </p>
+                <p>"Fornecer inteligência artificial de classe mundial para proteger, otimizar e expandir operações digitais, garantindo privacidade absoluta e eficiência máxima."</p>
             </div>
         </div>
     </div>
