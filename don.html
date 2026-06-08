@@ -1,1 +1,63 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Painel do Don — UmbreonPay</title><link rel="stylesheet" href="style.css"><style>.don-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:30px}.don-card{background:var(--cinza-escuro);padding:20px;border:1px solid #222;text-align:center}.don-card h3{color:var(--dourado);font-size:12px;letter-spacing:2px;margin-bottom:10px}.don-card .valor{font-size:28px;font-weight:bold}.btn-fenix{background:#FF1744;color:white;padding:15px 30px;border:none;font-weight:bold;cursor:pointer;width:100%;margin-top:20px}</style></head><body><header><nav><div class="logo">UMBREONPAY — PAINEL DO DON</div></nav></header><section style="padding-top:100px" class="section-black"><div class="container"><h2 style="color:var(--dourado)">👑 PAINEL DO DON</h2><div class="divider-small"></div><div class="don-grid"><div class="don-card"><h3>Total de Clientes</h3><div class="valor" style="color:white">1.342</div></div><div class="don-card"><h3>Capital Total</h3><div class="valor" style="color:#00C853">R$ 12.8M</div></div><div class="don-card"><h3>Taxas Hoje</h3><div class="valor" style="color:var(--dourado)">R$ 47.250</div></div><div class="don-card"><h3>Taxas Mês</h3><div class="valor" style="color:var(--dourado)">R$ 1.417.500</div></div><div class="don-card"><h3>Contas Ativas</h3><div class="valor" style="color:white">847</div></div><div class="don-card"><h3>Carteiras TWS</h3><div class="valor" style="color:white">100</div></div><div class="don-card"><h3>Mixer Ciclos</h3><div class="valor" style="color:white">12.847</div></div><div class="don-card"><h3>Lucro Líquido</h3><div class="valor" style="color:#00C853">R$ 4.2M</div></div></div><button class="btn-fenix" onclick="confirm('Tem certeza?') && alert('Protocolo Fênix ativado. Capital drenado para carteiras frias.')">🔴 PROTOCOLO FÊNIX FINANCEIRO</button></div></section></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Painel do Don — UmbreonPay</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{background:#0A0A0A;font-family:'Inter',sans-serif;color:#FFF;padding:30px}
+        h1{font-family:'Cinzel',serif;color:#C9A84C;text-align:center;font-size:22px;letter-spacing:4px;margin-bottom:30px}
+        .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;max-width:1000px;margin:0 auto}
+        .card{background:#111;border:1px solid #1A1A1A;border-radius:12px;padding:20px;text-align:center}
+        .card h3{color:#C9A84C;font-size:10px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+        .card .valor{font-size:28px;font-weight:700}
+        .card .verde{color:#00C853}.card .dourado{color:#C9A84C}
+        .card .branco{color:#FFF}
+        .btn-fenix{display:block;width:100%;max-width:400px;margin:30px auto;padding:16px;background:#FF1744;color:#FFF;border:none;border-radius:12px;font-weight:700;cursor:pointer;font-size:14px;letter-spacing:2px}
+        .secao{max-width:1000px;margin:30px auto}
+        .secao h3{color:#C9A84C;font-size:14px;letter-spacing:2px;margin-bottom:15px}
+        .log{background:#111;border:1px solid #1A1A1A;border-radius:8px;padding:15px;margin-bottom:10px;font-size:12px;color:#888}
+        @media(max-width:768px){.grid{grid-template-columns:repeat(2,1fr)}}
+    </style>
+</head>
+<body>
+    <h1>👑 PAINEL DO DON</h1>
+    
+    <div class="grid">
+        <div class="card"><h3>🐍 Ouroboros</h3><div class="valor dourado" id="capital">--</div></div>
+        <div class="card"><h3>📈 Lucro Hoje</h3><div class="valor verde" id="lucroHoje">--</div></div>
+        <div class="card"><h3>📊 Lucro Mês</h3><div class="valor verde" id="lucroMes">--</div></div>
+        <div class="card"><h3>🎯 Meta Diária</h3><div class="valor branco" id="meta">R$ 5.000</div></div>
+        <div class="card"><h3>📊 Progresso</h3><div class="valor dourado" id="progresso">--</div></div>
+        <div class="card"><h3>🏦 API</h3><div class="valor branco" id="apiStatus">--</div></div>
+        <div class="card"><h3>🗄️ Banco</h3><div class="valor branco">PostgreSQL</div></div>
+        <div class="card"><h3>🌐 Site</h3><div class="valor branco">66 páginas</div></div>
+    </div>
+
+    <button class="btn-fenix" onclick="confirm('ATENÇÃO: Isso vai drenar todo o capital para carteiras frias. Continuar?') && alert('Protocolo Fênix ativado.')">🔴 PROTOCOLO FÊNIX FINANCEIRO</button>
+
+    <div class="secao">
+        <h3>📋 Últimas Transações do Ouroboros</h3>
+        <div id="logs"><div class="log">Carregando...</div></div>
+    </div>
+
+    <script>
+    async function atualizar() {
+        try {
+            const r = await fetch('https://ouroboros-tws.onrender.com/api/ouroboros/status');
+            const d = await r.json();
+            document.getElementById('capital').textContent = 'R$ ' + d.capital.toLocaleString();
+            document.getElementById('lucroHoje').textContent = 'R$ ' + d.lucro_hoje.toLocaleString();
+            document.getElementById('lucroMes').textContent = 'R$ ' + d.lucro_mes.toLocaleString();
+            document.getElementById('progresso').textContent = d.progresso + '%';
+            document.getElementById('apiStatus').textContent = '✅ ONLINE';
+        } catch(e) {
+            document.getElementById('apiStatus').textContent = '❌ OFFLINE';
+        }
+    }
+    atualizar();
+    setInterval(atualizar, 10000);
+    </script>
+</body>
+</html>
