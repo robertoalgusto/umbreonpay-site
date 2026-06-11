@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<html><head><title>Assistente IA</title><style>body{background:#0A0A0A;color:white;font-family:monospace;padding:20px;}</style></head>
+<body><h1>🤖 ASSISTENTE VIRTUAL</h1><div id="chat" style="height:300px;overflow-y:auto;background:#1A1A2A;padding:10px;border-radius:10px;"></div><input id="msg" placeholder="Digite sua pergunta..." style="width:80%"><button onclick="enviar()">Enviar</button>
+<script>function enviar(){let m=document.getElementById('msg').value;let chat=document.getElementById('chat');chat.innerHTML+=`<p>👤 Você: ${m}</p>`;setTimeout(()=>{chat.innerHTML+=`<p>🤖 IA: Como posso ajudar com ${m}?</p>`;chat.scrollTop=chat.scrollHeight;},500);document.getElementById('msg').value='';}</script></body></html>
