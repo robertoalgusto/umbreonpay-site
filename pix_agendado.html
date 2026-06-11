@@ -1,4 +1,4 @@
 <!DOCTYPE html>
-<html><head><title>Pix Agendado</title><style>body{background:#0A0A0A;color:white;font-family:monospace;padding:20px;}</style></head>
+<html><head><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><title>Pix Agendado</title><style>body{background:#0A0A0A;color:white;font-family:monospace;padding:20px;}</style></head>
 <body><h1>📅 PIX AGENDADO</h1><input id="chave" placeholder="Chave Pix destino"><br><input id="valor" type="number" placeholder="Valor (R$)"><br><input id="data" type="date"><br><button onclick="agendar()">AGENDAR</button><div id="msg"></div>
 <script>async function agendar(){let data=document.getElementById('data').value;let msg=document.getElementById('msg');msg.innerHTML=`✅ Pix agendado para ${data}`;}</script></body></html>

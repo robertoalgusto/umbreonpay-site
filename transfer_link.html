@@ -1,4 +1,4 @@
 <!DOCTYPE html>
-<html><head><title>Transferência por Link</title><style>body{background:#0A0A0A;color:white;font-family:monospace;text-align:center;padding:50px;}</style></head>
+<html><head><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><title>Transferência por Link</title><style>body{background:#0A0A0A;color:white;font-family:monospace;text-align:center;padding:50px;}</style></head>
 <body><h1>🔗 TRANSFERÊNCIA POR LINK</h1><input id="valor" placeholder="Valor (R$)" style="padding:10px"><br><button onclick="gerar()">GERAR LINK</button><div id="link" style="margin-top:20px;padding:10px;background:#1A1A2A;border-radius:10px;"></div>
 <script>function gerar(){let v=document.getElementById('valor').value;document.getElementById('link').innerHTML=`✅ Link gerado!<br>umbreonpay.com/pagar/${Math.random().toString(36).substring(2,8)}`;}</script></body></html>

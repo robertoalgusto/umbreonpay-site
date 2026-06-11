@@ -1,4 +1,4 @@
 <!DOCTYPE html>
-<html><head><title>Cadastro</title><style>body{background:#0A0A0A;color:white;font-family:monospace;text-align:center;padding:50px;}</style></head>
+<html><head><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">🔹 <title>Cadastro</title><style>body{background:#0A0A0A;color:white;font-family:monospace;text-align:center;padding:50px;}</style></head>
 <body><h1>📝 CADASTRO</h1><input id="nome" placeholder="Nome"><br><input id="email" placeholder="Email"><br><input id="senha" type="password" placeholder="Senha"><br><button onclick="cadastrar()">CRIAR CONTA</button><div id="msg"></div>
 <script>async function cadastrar(){let r=await fetch('api/banco.php?acao=cadastrar&nome='+document.getElementById('nome').value+'&email='+document.getElementById('email').value+'&senha='+document.getElementById('senha').value);let d=await r.json();document.getElementById('msg').innerHTML=d.sucesso?'✅ Conta criada!':'❌ Erro';}</script></body></html>

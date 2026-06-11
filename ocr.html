@@ -1,4 +1,4 @@
 <!DOCTYPE html>
-<html><head><title>OCR</title><style>body{background:#0A0A0A;color:white;font-family:monospace;text-align:center;padding:50px;}</style></head>
+<html><head><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><title>OCR</title><style>body{background:#0A0A0A;color:white;font-family:monospace;text-align:center;padding:50px;}</style></head>
 <body><h1>📸 RECONHECIMENTO DE COMPROVANTES</h1><input type="file" accept="image/*" id="imagem"><br><button onclick="reconhecer()">IDENTIFICAR</button><div id="resultado"></div>
 <script>function reconhecer(){let arquivo=document.getElementById('imagem').files[0];if(arquivo){document.getElementById('resultado').innerHTML='✅ Comprovante identificado!<br>Valor: R$ 150,00<br>Data: 11/06/2026';}}</script></body></html>
