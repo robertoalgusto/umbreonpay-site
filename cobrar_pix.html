@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<html><head><title>Cobrar Pix</title><style>body{background:#0A0A0A;color:white;font-family:monospace;text-align:center;padding:50px;}</style></head>
+<body><h1>💳 COBRAR PIX</h1><input id="valor" placeholder="Valor (R$)"><br><button onclick="gerar()">GERAR QR CODE</button><div id="qr" style="background:#1A1A2A;padding:20px;border-radius:10px;margin-top:20px;"></div>
+<script>function gerar(){let v=document.getElementById('valor').value;document.getElementById('qr').innerHTML=`📱 QR Code PIX<br>Valor: R$ ${v}<br>Chave: cobrar@umbreonpay.com`;}</script></body></html>

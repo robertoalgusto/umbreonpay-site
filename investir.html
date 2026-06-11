@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<html><head><title>Investir</title><style>body{background:#0A0A0A;color:white;font-family:monospace;padding:20px;}</style></head>
+<body><h1>📈 INVESTIR</h1><select id="tipo"><option>CDB 105% CDI</option><option>Tesouro Selic</option><option>Fundos Imobiliários</option></select><br><input id="valor" placeholder="Valor (R$)"><br><button onclick="investir()">INVESTIR</button><div id="msg"></div>
+<script>function investir(){let v=document.getElementById('valor').value;document.getElementById('msg').innerHTML=`✅ R$ ${v} investido com sucesso!`;}</script></body></html>
