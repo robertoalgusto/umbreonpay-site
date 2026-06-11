@@ -133,3 +133,4 @@ footer p { font-family: 'Georgia', serif; color: var(--dourado); font-size: 12px
   100% { box-shadow: 0 0 20px #C9A84C; }
 }
 .btn:hover { animation: glow 0.5s infinite; transform: scale(1.02); transition: all 0.3s; }
+@media (max-width: 768px) { body { padding: 10px; } button { width: 100%; } }
