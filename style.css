@@ -118,3 +118,18 @@ footer p { font-family: 'Georgia', serif; color: var(--dourado); font-size: 12px
         gap: 15px;
     }
 }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .botoes { flex-direction: column; align-items: center; }
+  .btn { width: 80%; text-align: center; }
+  .saldo .valor { font-size: 32px; }
+  body { padding: 10px; }
+}
+
+/* Animações */
+@keyframes glow {
+  0% { box-shadow: 0 0 5px #C9A84C; }
+  100% { box-shadow: 0 0 20px #C9A84C; }
+}
+.btn:hover { animation: glow 0.5s infinite; transform: scale(1.02); transition: all 0.3s; }

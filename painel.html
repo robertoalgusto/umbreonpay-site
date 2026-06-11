@@ -1,5 +1,99 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"><title>Painel — UmbreonPay</title><link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"><style>*{margin:0;padding:0;box-sizing:border-box}body{background:#0A0A0A;font-family:'Inter',sans-serif;color:#FFF;display:flex;min-height:100vh}.sidebar{width:260px;background:#0D0D0D;border-right:1px solid #1A1A1A;padding:30px 20px;display:flex;flex-direction:column}.sidebar h2{font-family:'Cinzel',serif;color:#C9A84C;font-size:18px;letter-spacing:3px;text-align:center;margin-bottom:30px}.sidebar a{display:block;color:#888;padding:12px 15px;text-decoration:none;font-size:13px;border-radius:8px;margin-bottom:5px}.sidebar a:hover,.sidebar a.active{background:rgba(201,168,76,.1);color:#C9A84C}.main{flex:1;padding:40px}.saldo-card{background:linear-gradient(135deg,#1A1A1A,#0A0A0A);border:1px solid #C9A84C;border-radius:16px;padding:30px;margin-bottom:30px}.saldo-card .label{color:#888;font-size:11px;text-transform:uppercase;letter-spacing:2px}.saldo-card .valor{font-size:42px;font-weight:700;color:#FFF;margin:10px 0}.quick-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-bottom:30px}.quick-btn{background:#111;border:1px solid #1A1A1A;border-radius:12px;padding:25px;text-align:center;color:#FFF;text-decoration:none;transition:all .3s}.quick-btn:hover{border-color:#C9A84C;transform:translateY(-3px)}.quick-btn .icon{font-size:28px;margin-bottom:10px}.quick-btn .label{font-size:12px;color:#888}@media(max-width:768px){.sidebar{display:none}.quick-actions{grid-template-columns:repeat(2,1fr)}}</style></head><body><div class="sidebar"><h2>UMBREONPAY</h2><a href="painel.html" class="active">📊 Dashboard</a><a href="extrato.html">📋 Extrato</a><a href="swap.html">💱 Cripto</a><a href="cartao.html">💳 Cartão NFC</a><a href="vault.html">🔐 Vault</a><a href="metas.html">🎯 Metas</a><a href="index.html" style="margin-top:auto;color:#FF1744">🚪 Sair</a></div><div class="main"><h2 style="font-family:'Cinzel',serif;color:#C9A84C;margin-bottom:30px">Dashboard</h2><div class="saldo-card"><div class="label">Saldo Disponível</div><div class="valor" id="saldo">R$ --</div></div><div class="quick-actions"><a href="#" class="quick-btn"><div class="icon">📤</div><div class="label">Pix</div></a><a href="#" class="quick-btn"><div class="icon">📥</div><div class="label">Depositar</div></a><a href="swap.html" class="quick-btn"><div class="icon">💱</div><div class="label">Swap</div></a><a href="cartao.html" class="quick-btn"><div class="icon">💳</div><div class="label">Cartão NFC</div></a></div></div><script>
-const API='https://umbreonpay-api.onrender.com';
-const user=JSON.parse(localStorage.getItem('umb_user')||'{}');
-if(user.cpf){fetch(API+'/api/extrato',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({cpf:user.cpf})}).then(r=>r.json()).then(d=>{if(d.ok){document.getElementById('saldo').textContent='R$ '+user.saldo_brl.toFixed(2)}}).catch(()=>{document.getElementById('saldo').textContent='R$ -- (offline)'})}
-</script></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="description" content="UmbreonPay – O banco digital que opera nas sombras. Anonimato, segurança e poder.">
+  <meta name="keywords" content="banco digital, criptomoedas, monero, privacidade, anonimato">
+  <meta name="author" content="UmbreonPay TWS">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><title>🔹 Painel - UmbreonPay</title>
+<style>
+body{background:#0A0A0A;color:white;font-family:monospace;padding:20px;}
+.saldo{background:linear-gradient(135deg,#6B3FA0,#4B0082);padding:30px;border-radius:20px;text-align:center;}
+.saldo .valor{font-size:48px;font-weight:bold;}
+.botoes{display:flex;gap:15px;flex-wrap:wrap;justify-content:center;margin:30px 0;}
+.btn{padding:15px 30px;border-radius:10px;text-decoration:none;color:white;font-weight:bold;}
+.depositar{background:#00C853;}
+.sacar{background:#FF1744;}
+.swap{background:#C9A84C;color:#0A0A0A;}
+.extrato{background:#2A2A3A;}
+.logout{background:#555;}
+.transacoes{background:#1A1A2A;padding:20px;border-radius:20px;}
+.transacao{border-bottom:1px solid #2A2A3A;padding:10px;display:flex;justify-content:space-between;}
+.positivo{color:#00C853;}
+.negativo{color:#FF1744;}
+</style>
+</head>
+<body>
+    <div class="saldo">
+        <h2>💰 SALDO</h2>
+        <div class="valor" id="saldo">R$ 0,00</div>
+    </div>
+    <div class="botoes">
+        <button class="btn depositar" onclick="depositar()">📤 DEPOSITAR</button>
+        <button class="btn sacar" onclick="sacar()">📥 SACAR</button>
+        <a href="swap.html" class="btn swap">🔄 SWAP</a>
+        <button class="btn extrato" onclick="carregarExtrato()">📋 EXTRATO</button>
+        <button class="btn logout" onclick="logout()">🚪 SAIR</button>
+    </div>
+    <div class="transacoes">
+        <h3>📋 ÚLTIMAS TRANSAÇÕES</h3>
+        <div id="extrato"></div>
+    </div>
+    <script>
+        const cliente_id = localStorage.getItem('cliente_id');
+        if (!cliente_id) window.location.href = 'login.html';
+        
+        async function carregarSaldo() {
+            const response = await fetch(`http://localhost:5000/api/saldo?cliente_id=${cliente_id}`);
+            const data = await response.json();
+            document.getElementById('saldo').innerHTML = `R$ ${data.saldo.toFixed(2)}`;
+        }
+        
+        async function carregarExtrato() {
+            const response = await fetch(`http://localhost:5000/api/extrato?cliente_id=${cliente_id}`);
+            const data = await response.json();
+            const extratoDiv = document.getElementById('extrato');
+            if (data.transacoes && data.transacoes.length > 0) {
+                extratoDiv.innerHTML = data.transacoes.map(t => `
+                    <div class="transacao">
+                        <span>${new Date(t.data).toLocaleDateString()}</span>
+                        <span>${t.descricao || t.tipo}</span>
+                        <span class="${t.valor > 0 ? 'positivo' : 'negativo'}">R$ ${t.valor.toFixed(2)}</span>
+                    </div>
+                `).join('');
+            } else {
+                extratoDiv.innerHTML = '<p>Nenhuma transação</p>';
+            }
+        }
+        
+        function depositar() {
+            let valor = prompt("Valor para depositar:");
+            if (valor) alert(`Depósito de R$ ${valor} solicitado.`);
+        }
+        
+        function sacar() {
+            let valor = prompt("Valor para sacar (taxa 15%):");
+            if (valor) alert(`Saque de R$ ${valor} solicitado. Taxa: R$ ${valor*0.15}`);
+        }
+        
+        function logout() {
+            localStorage.clear();
+            window.location.href = 'login.html';
+        }
+        
+        carregarSaldo();
+        carregarExtrato();
+    </script>
+<div class="bunker-coords" style="display: none;">50.1109° N, 8.6821° E – Centro de operações de contingência</div>
+</body>
+</html>
+<script>
+// Notificação simples
+function notificar(mensagem) {
+  if ("Notification" in window && Notification.permission === "granted") {
+    new Notification("UmbreonPay", { body: mensagem });
+  } else if ("Notification" in window) {
+    Notification.requestPermission();
+  }
+}
+notificar("Bem-vindo ao UmbreonPay!");
+</script>

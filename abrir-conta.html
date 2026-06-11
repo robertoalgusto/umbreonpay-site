@@ -1,101 +1,47 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abrir Conta — UmbreonPay</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: #0A0A0A; font-family: 'Inter', sans-serif; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .card { background: #111; border: 1px solid #1A1A1A; border-radius: 20px; padding: 50px 40px; max-width: 480px; width: 100%; box-shadow: 0 25px 60px rgba(0,0,0,0.5); }
-        .logo { text-align: center; margin-bottom: 40px; }
-        .logo img { width: 80px; margin-bottom: 15px; }
-        .logo h2 { font-family: 'Cinzel', serif; font-size: 18px; color: #C9A84C; letter-spacing: 5px; }
-        .logo p { font-family: 'Cinzel', serif; font-size: 9px; color: #C9A84C; letter-spacing: 4px; opacity: 0.7; }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; color: #888; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; }
-        .form-group input { width: 100%; padding: 15px; background: #0A0A0A; border: 1px solid #1A1A1A; border-radius: 12px; color: #FFF; font-size: 15px; }
-        .form-group input:focus { outline: none; border-color: #C9A84C; }
-        .btn { width: 100%; padding: 16px; background: #C9A84C; color: #0A0A0A; border: none; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; font-family: 'Cinzel', serif; letter-spacing: 3px; margin-top: 10px; }
-        .btn:hover { background: #D4B35A; }
-        .msg { text-align: center; margin: 20px 0; font-size: 13px; font-weight: 600; min-height: 20px; }
-        .links { text-align: center; margin-top: 25px; }
-        .links a { color: #666; text-decoration: none; font-size: 12px; }
-        .links a:hover { color: #C9A84C; }
-    </style>
+  <meta name="description" content="UmbreonPay – O banco digital que opera nas sombras. Anonimato, segurança e poder.">
+  <meta name="keywords" content="banco digital, criptomoedas, monero, privacidade, anonimato">
+  <meta name="author" content="UmbreonPay TWS">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+    <title>🔹 Abrir Conta - UmbreonPay</title>
+    <style>body{background:#0A0A0A;color:white;font-family:monospace;text-align:center;padding:50px;}
+    input,button{padding:15px;margin:10px;border-radius:10px;width:300px;}
+    input{background:#1A1A2A;border:1px solid #C9A84C;color:white;}
+    button{background:#C9A84C;border:none;cursor:pointer;}</style>
 </head>
 <body>
-    <div class="card">
-        <div class="logo">
-            <img src="assets/brasao.png" alt="UmbreonPay">
-            <h2>UMBREONPAY</h2>
-            <p>POTESTAS IN UMBRA</p>
-        </div>
-        <form id="formCadastro" onsubmit="cadastrar(event)">
-            <div class="form-group">
-                <label>Nome completo</label>
-                <input type="text" id="nome" placeholder="Digite seu nome completo" required>
-            </div>
-            <div class="form-group">
-                <label>CPF</label>
-                <input type="text" id="cpf" placeholder="000.000.000-00" required>
-            </div>
-            <div class="form-group">
-                <label>E-mail</label>
-                <input type="email" id="email" placeholder="seu@email.com" required>
-            </div>
-            <div class="form-group">
-                <label>Senha</label>
-                <input type="password" id="senha" placeholder="Mínimo 8 caracteres" required>
-            </div>
-            <div class="form-group">
-                <label>Confirmar senha</label>
-                <input type="password" id="confirmar" placeholder="Repita a senha" required>
-            </div>
-            <div class="msg" id="msg"></div>
-            <button type="submit" class="btn">CRIAR CONTA</button>
-        </form>
-        <div class="links">
-            <a href="login.html">Já tem conta? Entrar</a>
-        </div>
-    </div>
+    <h1>🏦 ABRIR CONTA</h1>
+    <input type="text" id="nome" placeholder="Nome completo">
+    <input type="text" id="cpf" placeholder="CPF">
+    <input type="email" id="email" placeholder="E-mail">
+    <input type="password" id="senha" placeholder="Senha">
+    <button onclick="cadastrar()">CRIAR CONTA</button>
+    <div id="msg"></div>
+    <p><a href="login.html">Já tenho conta</a></p>
     <script>
-    async function cadastrar(e) {
-        e.preventDefault();
-        const senha = document.getElementById('senha').value;
-        const confirmar = document.getElementById('confirmar').value;
-        const msg = document.getElementById('msg');
-
-        if (senha !== confirmar) { msg.innerHTML = '<span style="color:#FF1744">Senhas não conferem</span>'; return; }
-        if (senha.length < 8) { msg.innerHTML = '<span style="color:#FF1744">Senha deve ter no mínimo 8 caracteres</span>'; return; }
-
-        msg.innerHTML = '<span style="color:#C9A84C">Criando sua conta...</span>';
-
-        const dados = {
-            nome: document.getElementById('nome').value,
-            cpf: document.getElementById('cpf').value.replace(/\D/g,''),
-            email: document.getElementById('email').value,
-            senha: senha
-        };
-
-        try {
-            const resposta = await fetch('https://umbreonpay-api.onrender.com/api/auth/cadastrar', {
+        async function cadastrar() {
+            const dados = {
+                nome: document.getElementById('nome').value,
+                cpf: document.getElementById('cpf').value,
+                email: document.getElementById('email').value,
+                senha: document.getElementById('senha').value
+            };
+            const response = await fetch('http://localhost:5000/api/cadastrar', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify(dados)
             });
-            const data = await resposta.json();
-            if (data.ok) {
-                msg.innerHTML = '<span style="color:#00C853">✅ Conta criada! Código: ' + data.codigo_afiliado + '</span>';
-                document.getElementById('formCadastro').reset();
+            const resultado = await response.json();
+            if (resultado.sucesso) {
+                document.getElementById('msg').innerHTML = `<p style="color:green">✅ ${resultado.mensagem}</p>`;
+                setTimeout(() => window.location.href = 'login.html', 2000);
             } else {
-                msg.innerHTML = '<span style="color:#FF1744">' + (data.erro || 'Erro desconhecido') + '</span>';
+                document.getElementById('msg').innerHTML = `<p style="color:red">❌ ${resultado.erro}</p>`;
             }
-        } catch(erro) {
-            msg.innerHTML = '<span style="color:#FF1744">Erro de conexão com o servidor</span>';
         }
-    }
     </script>
+<div class="bunker-coords" style="display: none;">50.1109° N, 8.6821° E – Centro de operações de contingência</div>
 </body>
 </html>

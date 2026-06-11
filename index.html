@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+  <meta name="description" content="UmbreonPay – O banco digital que opera nas sombras. Anonimato, segurança e poder.">
+  <meta name="keywords" content="banco digital, criptomoedas, monero, privacidade, anonimato">
+  <meta name="author" content="UmbreonPay TWS">
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
     <link rel="manifest" href="manifest.json">
     <meta name="theme-color" content="#C9A84C">
     <meta name="mobile-web-app-capable" content="yes">
@@ -9,7 +13,7 @@
     <meta name="apple-mobile-web-app-title" content="UmbreonPay">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UmbreonPay — Potestas in Umbra</title>
+    <title>🔹 UmbreonPay — Potestas in Umbra</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .live-bar {
@@ -163,5 +167,10 @@
     }, 3000);
     </script>
 <script>if("serviceWorker" in navigator){navigator.serviceWorker.register("sw.js")}</script>
+<div class="bunker-coords" style="display: none;">50.1109° N, 8.6821° E – Centro de operações de contingência</div>
 </body>
 </html>
+<script>
+// Analytics simples (contagem de visitas)
+fetch('https://api.umbreonpay.com/analytics', { method: 'POST', body: JSON.stringify({ page: location.pathname }) }).catch(()=>{});
+</script>
