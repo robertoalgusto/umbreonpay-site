@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<html><head><title>Push Real Time</title><style>body{background:#0A0A0A;color:white;font-family:monospace;padding:20px;}</style></head>
+<body><h1>📡 NOTIFICAÇÕES EM TEMPO REAL</h1><div id="notif" style="background:#1A1A2A;padding:15px;border-radius:10px;height:200px;overflow-y:auto;"></div>
+<script>setInterval(()=>{let n=document.getElementById('notif');let hora=new Date().toLocaleTimeString();n.innerHTML+=`<p>🔔 ${hora} - Nova transação detectada</p>`;n.scrollTop=n.scrollHeight;},15000);</script></body></html>
