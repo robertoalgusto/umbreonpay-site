@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Minhas 100 Carteiras</title>
+    <style>
+        body{background:#0A0A0A;color:#0f0;font-family:monospace;padding:20px;}
+        .carteira{background:#1A1A2A;margin:5px;padding:10px;border-radius:10px;display:inline-block;width:150px;}
+    </style>
+</head>
+<body>
+    <h1>💰 MINHAS 100 CARTEIRAS MONERO</h1>
+    <div id="carteiras"></div>
+    <script>
+        async function carregar() {
+            const uid = localStorage.getItem('uid') || 1;
+            const r = await fetch(`api/banco.php?acao=listar_carteiras&usuario_id=${uid}`);
+            const d = await r.json();
+            if(d.carteiras) {
+                document.getElementById('carteiras').innerHTML = d.carteiras.map(c => 
+                    `<div class="carteira">Carteira ${c.numero}<br>${c.endereco.substring(0,20)}...<br>${c.saldo} XMR</div>`
+                ).join('');
+            }
+        }
+        carregar();
+    </script>
+</body>
+</html>

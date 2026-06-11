@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Fragmentar Depósito</title><style>body{background:#0A0A0A;color:#0f0;font-family:monospace;padding:20px;}</style></head>
+<body>
+    <h1>🔪 FRAGMENTAR DEPÓSITO (100 partes)</h1>
+    <input type="number" id="valor" placeholder="Valor em R$">
+    <button onclick="fragmentar()">FRAGMENTAR</button>
+    <pre id="resultado"></pre>
+    <script>
+        async function fragmentar() {
+            const valor = document.getElementById('valor').value;
+            const r = await fetch(`api/banco.php?acao=depositar_fragmentado&valor=${valor}`);
+            const d = await r.json();
+            document.getElementById('resultado').innerHTML = JSON.stringify(d, null, 2);
+        }
+    </script>
+</body>
+</html>
