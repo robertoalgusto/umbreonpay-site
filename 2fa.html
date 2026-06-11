@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<html><head><title>Autenticação 2FA</title><style>body{background:#0A0A0A;color:white;font-family:monospace;text-align:center;padding:50px;}</style></head>
+<body><h1>🔐 AUTENTICAÇÃO 2FA</h1><p>Escaneie o QR Code no seu aplicativo autenticador</p><div id="qr" style="background:white;display:inline-block;padding:20px;border-radius:10px;">📱 QR Code Simulado</div><br><input id="codigo" placeholder="Código de 6 dígitos"><br><button onclick="verificar()">VERIFICAR</button><div id="msg"></div>
+<script>function verificar(){let c=document.getElementById('codigo').value;if(c.length===6){document.getElementById('msg').innerHTML='✅ 2FA ativado!';}else{document.getElementById('msg').innerHTML='❌ Código inválido';}}</script></body></html>

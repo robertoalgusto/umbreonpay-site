@@ -1,0 +1,7 @@
+<!DOCTYPE html>
+<html><head><title>Notificações</title><style>body{background:#0A0A0A;color:white;font-family:monospace;padding:20px;}</style></head>
+<body><h1>🔔 NOTIFICAÇÕES PUSH</h1><button onclick="notificar()">ATIVAR NOTIFICAÇÕES</button><button onclick="testar()">TESTAR</button><div id="msg"></div>
+<script>
+async function notificar(){const permission=await Notification.requestPermission();document.getElementById('msg').innerHTML=permission==='granted'?'✅ Notificações ativadas!':'❌ Permissão negada';}
+function testar(){if(Notification.permission==='granted'){new Notification('UmbreonPay',{body:'Teste de notificação push!',icon:'/assets/favicon.svg'});}}
+</script></body></html>

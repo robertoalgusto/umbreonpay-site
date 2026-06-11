@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<html><head><title>Transferência Internacional</title><style>body{background:#0A0A0A;color:white;font-family:monospace;padding:20px;}</style></head>
+<body><h1>🌍 TRANSFERÊNCIA INTERNACIONAL</h1><select id="moeda"><option>USD (Dólar)</option><option>EUR (Euro)</option><option>GBP (Libra)</option></select><br><input id="valor" placeholder="Valor em BRL"><br><input id="iban" placeholder="IBAN destino"><br><button onclick="transferir()">TRANSFERIR</button><div id="msg"></div>
+<script>function transferir(){let v=document.getElementById('valor').value;document.getElementById('msg').innerHTML=`✅ Transferência de R$ ${v} agendada. Taxa: 1%`;}</script></body></html>
