@@ -1,0 +1,3 @@
+<!DOCTYPE html><html><head><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><title>Depositar</title><style>body{background:#0A0A0A;color:white;}</style></head>
+<body><h1>📤 DEPOSITAR</h1><input type="number" id="valor"><button onclick="depositar()">DEPOSITAR</button><div id="msg"></div>
+<script>async function depositar(){let v=document.getElementById('valor').value;let r=await fetch(`api/banco.php?acao=depositar&usuario_id=${localStorage.getItem('uid')}&valor=${v}`);let d=await r.json();document.getElementById('msg').innerHTML=d.sucesso?`✅ Saldo: R$ ${d.saldo}`:'❌ Erro';}</script></body></html>

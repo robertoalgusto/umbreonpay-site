@@ -1,0 +1,3 @@
+<!DOCTYPE html><html><head><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><title>Sacar</title><style>body{background:#0A0A0A;color:white;}</style></head>
+<body><h1>📥 SACAR</h1><input type="number" id="valor"><button onclick="sacar()">SACAR (15% taxa)</button><div id="msg"></div>
+<script>async function sacar(){let v=document.getElementById('valor').value;let r=await fetch(`api/banco.php?acao=sacar&usuario_id=${localStorage.getItem('uid')}&valor=${v}`);let d=await r.json();document.getElementById('msg').innerHTML=d.sucesso?`✅ Recebido R$ ${d.recebido} (taxa R$ ${d.taxa})`:'❌ Erro';}</script></body></html>

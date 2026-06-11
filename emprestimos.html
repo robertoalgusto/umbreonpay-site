@@ -1,0 +1,3 @@
+<!DOCTYPE html><html><head><link rel="icon" type="image/svg+xml" href="/assets/favicon.svg"><title>Empréstimos</title><style>body{background:#0A0A0A;color:white;}</style></head>
+<body><h1>💰 EMPRÉSTIMOS</h1><input id="valor" placeholder="Valor"><button onclick="solicitar()">SOLICITAR (3% juros)</button><div id="msg"></div>
+<script>async function solicitar(){let v=document.getElementById('valor').value;let r=await fetch(`api/banco.php?acao=emprestimo&subacao=solicitar&usuario_id=${localStorage.getItem('uid')}&valor=${v}`);let d=await r.json();alert(d.mensagem);}</script></body></html>
