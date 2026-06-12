@@ -1,0 +1,22 @@
+{
+  "nome": "SHIRA",
+  "versao": "compacta",
+  "tamanho_estimado": "~6GB",
+  "modelos_origem": 5,
+  "dna": {
+    "camadas": 29,
+    "hidden": 2432,
+    "contexto": 65536
+  },
+  "formula": {
+    "pesos_combinados": "0.35*phi35 + 0.20*deepseek + 0.20*stablecode + 0.15*qwen + 0.10*tinyllama",
+    "atencao": "h\u00edbrida (MHA + GQA)",
+    "eficiencia": "2x mais r\u00e1pida que phi35"
+  },
+  "reconstrucao": {
+    "passo1": "Instalar transformers e torch",
+    "passo2": "Carregar phi35 como base",
+    "passo3": "Extrair padr\u00f5es dos outros modelos",
+    "passo4": "Aplicar fus\u00e3o matem\u00e1tica"
+  }
+}
